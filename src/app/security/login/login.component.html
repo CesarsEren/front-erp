@@ -1,0 +1,30 @@
+<section class="api-section">
+
+    <mat-card>
+        <mat-toolbar color="primary">
+            <mat-toolbar-row>
+                <span style="margin: auto;">Inicio de Sesión</span>
+            </mat-toolbar-row>
+        </mat-toolbar>
+        <mat-card-content >
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <mat-form-field appearance="outline">
+                    <mat-label>Usuario</mat-label>
+                    <input matInput type="text" placeholder="Usuario" id="in_usuario" formControlName="in_usuario">
+                    <mat-icon matSuffix>account_circle</mat-icon>
+
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Contraseña</mat-label>
+                    <input matInput type="password" placeholder="Contraseña" id="in_clave" formControlName="in_clave">
+                    <mat-icon matSuffix>lock</mat-icon>
+                </mat-form-field>
+                <button mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid">Ingresar</button>
+            </form>
+        </mat-card-content>
+
+        <div *ngIf="errorMessage" class="error">
+            {{ errorMessage }}
+        </div>
+    </mat-card>
+</section>

@@ -1,0 +1,38 @@
+.sidenav-container {
+  height: 100%;
+}
+
+.sidenav {
+  width: 240px;
+}
+
+.sidenav .mat-toolbar {
+  background: inherit;
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.menu-item {
+  display: flex;
+  justify-content: flex-start;
+}
+mat-icon {  
+}
+
+.link-text {
+  margin: 0;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+.active-link { 
+  color: red !important; 
+}
+
+.spacer {
+  flex: 1 1 auto;
+}

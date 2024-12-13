@@ -1,0 +1,157 @@
+<mat-toolbar style="background-color: white;">
+    <mat-icon aria-hidden="false" [routerLink]="['/main/grr']" fontIcon="arrow_back"></mat-icon>
+    <span>Generar Guías de Remisión Transportista</span>
+</mat-toolbar>
+<mat-divider></mat-divider>
+
+
+<div class="grid-container">
+    <section fxLayout="row wrap" fxFlex="100">
+        
+        <mat-card fxflex="35" fxFlex.gt-sm="30" fxFlex.lt-md="100" fxFlex.lt-md="row wrap">
+
+            <mat-card>
+                <mat-toolbar class="toolbar-card">Datos
+                    Generales</mat-toolbar>
+                <mat-divider></mat-divider>
+
+                <mat-card-content fxLayout="flex row" class="container">
+
+                    <mat-form-field class="media-control-form" fxFlex="60" appearance="outline">
+                        <mat-label>Serie</mat-label>
+                        <mat-select>
+                            <mat-option *ngFor="let food of foods" [value]="food.value">
+                                {{food.viewValue}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field class="media-control-form" fxFlex="40" appearance="outline">
+                        <mat-label>Número</mat-label>
+                        <input type="number" matInput placeholder="número" [maxLength]="3">
+                    </mat-form-field>
+
+                    <mat-form-field class="media-control-form" fxFlex="100" appearance="outline">
+                        <mat-label>Fecha de Emisión</mat-label>
+                        <input matInput [matDatepicker]="picker">
+                        <mat-hint>DD/MM/YYYY</mat-hint>
+                        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+
+                    <mat-form-field class="media-control-form" fxFlex="100" appearance="outline">
+                        <mat-label>Motivo de Traslado</mat-label>
+                        <mat-select>
+                            <mat-option *ngFor="let food1 of foods2" [value]="food1.value">
+                                {{food1.viewValue}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </mat-card-content>
+
+            </mat-card>
+
+            <mat-card>
+
+                <mat-toolbar class="toolbar-card">Destinatario</mat-toolbar>
+                <mat-divider></mat-divider>
+
+                <mat-card-content fxLayout="flex row" class="container">
+                    <mat-form-field class="media-control-form" fxFlex="40" appearance="outline">
+                        <mat-label>Tipo Documento</mat-label>
+                        <mat-select>
+                            <mat-option *ngFor="let tp of tip" [value]="tp.value">
+                                {{tp.viewValue}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field class="media-control-form" fxFlex="60" appearance="outline">
+                        <mat-label>Documento</mat-label>
+                        <input matInput placeholder="número" [maxLength]="11">
+                    </mat-form-field>
+
+                    <mat-form-field class="media-control-form" fxFlex="100" appearance="outline">
+                        <mat-label>Datos</mat-label>
+                        <input matInput placeholder="Datos" disabled="true">
+                    </mat-form-field>
+
+                </mat-card-content>
+
+            </mat-card>
+
+
+            <mat-card>
+
+                <mat-toolbar class="toolbar-card">Origen/Destino</mat-toolbar>
+                <mat-divider></mat-divider>
+
+                <mat-card-content fxLayout="flex row" class="container">
+
+
+                </mat-card-content>
+
+            </mat-card>
+
+            <mat-card>
+                <mat-toolbar class="toolbar-card">Fecha Envio</mat-toolbar>
+                <mat-divider></mat-divider>
+
+                <mat-card-content fxLayout="flex row" class="container">
+
+                    <mat-form-field class="media-control-form" fxFlex="100" appearance="outline">
+                        <mat-label>Fecha de envío</mat-label>
+                        <input matInput [matDatepicker]="picker2">
+                        <mat-hint>DD/MM/YYYY</mat-hint>
+                        <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+                        <mat-datepicker #picker2></mat-datepicker>
+                    </mat-form-field>
+
+                    <mat-form-field class="media-control-form" fxFlex="100" appearance="outline">
+                        <mat-label>Modalidad</mat-label>
+                        <mat-select>
+                            <mat-option *ngFor="let mod of modalidades" [value]="mod.value">
+                                {{mod.viewValue}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-slide-toggle labelPosition="before">Traslado en vehículos de categoría M1 o
+                        L</mat-slide-toggle>
+
+                </mat-card-content>
+
+            </mat-card>
+
+
+            <mat-card>
+                <mat-toolbar class="toolbar-card">Transportista</mat-toolbar>
+                <mat-divider></mat-divider>
+
+                <mat-card-content fxLayout="flex row" class="container">
+                    <mat-form-field class="media-control-form" fxFlex="40" appearance="outline">
+                        <mat-label>Tipo Documento</mat-label>
+                        <mat-select>
+                            <mat-option *ngFor="let tp2 of tip" [value]="tp2.value">
+                                {{tp2.viewValue}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field class="media-control-form" fxFlex="60" appearance="outline">
+                        <mat-label>Documento</mat-label>
+                        <input matInput placeholder="número" [maxLength]="11">
+                    </mat-form-field>
+
+                    <mat-form-field class="media-control-form" fxFlex="100" appearance="outline">
+                        <mat-label>Datos</mat-label>
+                        <input matInput placeholder="Datos" disabled="true">
+                    </mat-form-field>
+
+                </mat-card-content>
+                <button mat-raised-button color="primary">Generar GRT</button>
+
+            </mat-card>
+
+        </mat-card>
+    </section>
+</div>

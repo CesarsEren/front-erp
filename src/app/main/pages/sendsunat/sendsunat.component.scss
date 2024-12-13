@@ -1,0 +1,149 @@
+.grid-container {
+    margin: 20px;
+  }
+  
+  .dashboard-card {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    right: 15px;
+    bottom: 15px;
+  }
+  
+  .more-button {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+  }
+  
+  .dashboard-card-content {
+    text-align: center;
+  }
+  
+  .mat-card-filtros {
+    padding: 14px 24px !important;
+  }
+  
+  .example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }
+  
+  td {
+    padding-right: 8px;
+  }
+  
+  table {
+    width: 100%;
+  }
+  
+  mat-icon {
+    cursor: pointer;
+  }
+  
+  .grid-container {
+    margin: 20px;
+  }
+  
+  .container {
+    margin: 5px 5px 10px 5px;
+  }
+  
+  .dashboard-card {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    right: 15px;
+    bottom: 15px;
+  }
+  
+  .more-button {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+  }
+  
+  .dashboard-card-content {
+    text-align: center;
+  }
+  
+  .mat-card-filtros {
+    padding: 14px 24px !important;
+  }
+  
+  .media-control-form {
+    height: 25px;
+    font-size: 13px;
+    padding: 0px;
+  }
+  
+  .media-control-form ::ng-deep .mat-mdc-form-field-infix {
+    padding: 6px;
+    height: 20px;
+  }
+  
+  .media-control-form ::ng-deep .mat-mdc-text-field-wrapper {
+    height: 38px;
+  }
+  .media-control-form ::ng-deep .mdc-text-field {
+    height: 38px;
+  }
+  .media-control-form ::ng-deep .mdc-text-field--outlined {
+    height: 38px;
+  }
+  
+  .media-control-form ::ng-deep .mat-mdc-form-field-icon-suffix {
+    bottom: 8px;
+  }
+  .mat-mdc-form-field {
+    margin-top: 15px;
+    margin-bottom: 20px;
+  }
+  
+  .media-control-form
+    ::ng-deep
+    .mat-mdc-text-field-wrapper
+    .mat-mdc-form-field-flex
+    .mat-mdc-floating-label {
+    //top: calc(var(--mat-form-field-container-height) / 2);
+    top: 20px;
+    font-size: 14px;
+  }
+  
+  .toolbar-card {
+    height: 30px;
+    font-size: 14px;
+    background-color: black;
+    color: white;
+    border-radius: 3px 3px 0px 0px;
+  }
+  
+  .media-control-form
+    ::ng-deep
+    .mat-mdc-text-field-wrapper
+    .mdc-text-field
+    .mdc-text-field--outlined {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  //mat-mdc-form-field media-control-form mat-mdc-form-field-type-mat-select mat-form-field-appearance-outline
+  
+  .badge-generado  {
+    background-color: #4caf50;
+    color: white;
+    border-radius: 5px;
+    padding: 2px 4px 2px 4px;
+  }
+  
+  .badge-no-generado {
+    color: white;
+    background-color: #f44336;
+    border-radius: 5px;
+    padding: 2px 4px 2px 4px;
+  }
+  

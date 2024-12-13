@@ -1,0 +1,75 @@
+<mat-toolbar style="background-color: white;">
+    <span>Presentación a Sunat</span>
+    <!--span style="margin: 0 0 0 auto;">
+      @if (isHandset$ | async) {
+      <button mat-raised-button [routerLink]="['/main/grr/nuevo']" color="primary">
+        <mat-icon aria-hidden="false" fontIcon="add"></mat-icon>
+        Generar GRTs
+      </button>
+      }@else{
+      <button mat-raised-button [routerLink]="['/main/grr/nuevo']" color="primary">Generar GRTS</button>
+      }
+    </span-->
+  </mat-toolbar>
+  
+  <mat-divider></mat-divider>
+  <!--button mat-button color="accent"  (click)="openDialog('1')">Ver GRTS</button-->
+  <div class="grid-container">
+    <mat-accordion>
+      <mat-expansion-panel expanded>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+           BÙSQUEDA DE COMPROBANTES
+          </mat-panel-title>
+          <mat-panel-description>
+            ENCARGA.PE
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+  
+        <mat-action-row fxflex="100">
+          <mat-card fxflex="100" fxFlex.gt-sm="100" fxFlex.lt-md="100" fxFlex.lt-md="row wrap">
+            <div fxflex="100" fxLayout="row wrap" fxLayout.xs="column" class="container"
+              fxLayoutAlign="space-evenly center">
+              <mat-form-field class="media-control-form" fxFlex="39" appearance="outline">
+                <mat-label>Estado</mat-label>
+                <mat-select  [(ngModel)]="selecteddestado" >
+                  <mat-option *ngFor="let estado of estados" [value]="estado.codigo">
+                    {{estado.descripcion}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+  
+              <mat-form-field class="media-control-form" fxFlex="40" appearance="outline">
+                <mat-label>Fecha de Emisión</mat-label>
+                <input matInput [matDatepicker]="pickerfecha">
+                <mat-hint>DD/MM/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="pickerfecha"></mat-datepicker-toggle>
+                <mat-datepicker #pickerfecha></mat-datepicker>
+              </mat-form-field>
+  
+              <button type="button" mat-raised-button color="accent" fxFlex="20" >Buscar</button>
+              <!--button type="button" mat-raised-button fxFlex="10" (click)="limpiar()">Limpiar</button-->
+            </div>
+          </mat-card>
+  
+        </mat-action-row>
+  
+      </mat-expansion-panel>
+      <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            RESULTADOS DE LA BÚSQUEDA
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+   
+  
+  
+      </mat-expansion-panel>
+    </mat-accordion>
+  
+    <!--div class="grid-container">
+    <mat-card>
+      <mat-card-content>Simple card</mat-card-content>
+    </mat-card>
+  </div-->
+  </div>

@@ -1,0 +1,169 @@
+<mat-toolbar style="background-color: white;">
+  <span>Guías de Remisión Transportista - Manifiesto</span>
+  <!--span style="margin: 0 0 0 auto;">
+    @if (isHandset$ | async) {
+    <button mat-raised-button [routerLink]="['/main/grr/nuevo']" color="primary">
+      <mat-icon aria-hidden="false" fontIcon="add"></mat-icon>
+      Generar GRTs
+    </button>
+    }@else{
+    <button mat-raised-button [routerLink]="['/main/grr/nuevo']" color="primary">Generar GRTS</button>
+    }
+  </span-->
+</mat-toolbar>
+
+<mat-divider></mat-divider>
+<!--button mat-button color="accent"  (click)="openDialog('1')">Ver GRTS</button-->
+<div class="grid-container">
+  <mat-accordion>
+    <mat-expansion-panel expanded>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          BÙSQUEDA DE MANIFIESTOS
+        </mat-panel-title>
+        <mat-panel-description>
+          ENCARGA.PE
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <mat-action-row fxflex="100">
+        <mat-card fxflex="100" fxFlex.gt-sm="100" fxFlex.lt-md="100" fxFlex.lt-md="row wrap">
+          <div fxflex="100" fxLayout="row wrap" fxLayout.xs="column" class="container"
+            fxLayoutAlign="space-evenly center">
+            <mat-form-field class="media-control-form" fxFlex="39" appearance="outline">
+              <mat-label>Agencia</mat-label>
+              <mat-select [(ngModel)]="selectedAgencia">
+                <mat-option *ngFor="let agencia of agencias" [value]="agencia.codigo">
+                  {{agencia.descripcion}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field class="media-control-form" fxFlex="40" appearance="outline">
+              <mat-label>Fecha de Emisión</mat-label>
+              <input matInput [matDatepicker]="pickerfecha" [(ngModel)]="selectedFecha">
+              <mat-hint>DD/MM/YYYY</mat-hint>
+              <mat-datepicker-toggle matIconSuffix [for]="pickerfecha"></mat-datepicker-toggle>
+              <mat-datepicker #pickerfecha></mat-datepicker>
+            </mat-form-field>
+
+            <button type="button" mat-raised-button color="accent" fxFlex="20" (click)="buscar()">Buscar</button>
+            <!--button type="button" mat-raised-button fxFlex="10" (click)="limpiar()">Limpiar</button-->
+          </div>
+        </mat-card>
+
+      </mat-action-row>
+
+    </mat-expansion-panel>
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          RESULTADOS DE LA BÚSQUEDA
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+
+      <table mat-table [dataSource]="dataSource">
+        <!--class="mat-elevation-z8"-->
+
+        <!--- Note that these columns can be defined in any order.
+              The actual rendered columns are set as a property on the row definition" -->
+
+        <!-- Position Column -->
+        <ng-container matColumnDef="nro">
+          <th mat-header-cell *matHeaderCellDef> Nro. </th>
+          <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="agencia">
+          <th mat-header-cell *matHeaderCellDef> Agencia </th>
+          <td mat-cell *matCellDef="let element"> {{element.agencia}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="nroprogramacion">
+          <th mat-header-cell *matHeaderCellDef> Nro Bus </th>
+          <td mat-cell *matCellDef="let element"> {{element.nro}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="destino">
+          <th mat-header-cell *matHeaderCellDef> Destino </th>
+          <td mat-cell *matCellDef="let element"> {{element.destino}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="fecha">
+          <th mat-header-cell *matHeaderCellDef> Fecha </th>
+          <td mat-cell *matCellDef="let element"> {{element.fecha |date:"dd-MM-yyyy"}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="servicio">
+          <th mat-header-cell *matHeaderCellDef> Servicio </th>
+          <td mat-cell *matCellDef="let element"> {{element.servicio}}- {{element.servicioD}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="cantidadb">
+          <th mat-header-cell *matHeaderCellDef> Cant CPE </th>
+          <td mat-cell *matCellDef="let element"> {{element.cantidadb}} </td>
+        </ng-container>
+        <ng-container matColumnDef="estado">
+          <th mat-header-cell *matHeaderCellDef> Estado </th>
+          <td mat-cell *matCellDef="let element">
+            @if (element.generado == 1) {
+            <span matBadge="En Proceso" class="badge-en-proceso">
+              En Proceso
+            </span>
+            }@else if (element.generado == 2) {
+            <span matBadge="Generado" class="badge-generado">
+              Generado
+            </span>
+            }@else {
+            <span matBadge="No Generado" class="badge-no-generado">
+              Sin Generar
+            </span>
+            }
+          </td>
+        </ng-container>
+
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="acction">
+          <th mat-header-cell *matHeaderCellDef> Acciones </th>
+          <td mat-cell *matCellDef="let element">
+
+            @if (element.generado == 1) {
+            <span matBadge="En Proceso" class="badge-en-proceso">
+              En Proceso
+            </span> } @else if (element.generado == 2) {
+            <button mat-raised-button color="accent" (click)="openDialogVerEncomiendas(element.id)">Ver GRTS</button>
+
+            }@else {
+
+            <button mat-raised-button color="primary" (click)="openDialogSolicitudGrt(element.id)">Solicitud de GRT</button>
+
+            }
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+
+      <mat-paginator [length]="totalItems" [pageSizeOptions]="[5,10,20]" [pageIndex]="pageIndex" [pageSize]="pageSize"
+        showFirstLastButtons="true" (page)="onPageChange($event)">
+      </mat-paginator>
+
+
+    </mat-expansion-panel>
+  </mat-accordion>
+
+  <!--div class="grid-container">
+  <mat-card>
+    <mat-card-content>Simple card</mat-card-content>
+  </mat-card>
+</div-->
+</div>

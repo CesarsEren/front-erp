@@ -1,0 +1,21 @@
+.api-section {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  background-color: #f9f9f9;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 15px;
+}
+
+.error{
+    color: red;
+}

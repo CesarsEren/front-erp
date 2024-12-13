@@ -1,0 +1,57 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
+    <mat-toolbar>Menu</mat-toolbar>
+    <mat-nav-list>
+
+      <a mat-list-item [routerLink]="['/main/grr']" routerLinkActive="active-link">
+        <div class="menu-item">
+          <mat-icon aria-hidden="false" style="margin-top: 8px;" fontIcon="local_shipping"></mat-icon>
+          <span class="link-text">Manifiestos (GRT)</span>
+        </div>
+      </a>
+
+      <!--a mat-list-item [routerLink]="['/main/grr/nuevo']" routerLinkActive="active-link">
+        <div class="menu-item">
+          <mat-icon aria-hidden="false" style="margin-top: 8px;" fontIcon="local_shipping"></mat-icon>
+          <span class="link-text">Guía de Remisión</span>
+        </div>
+      </a-->
+
+      <a mat-list-item [routerLink]="['/main/grr/send']" routerLinkActive="active-link">
+        <div class="menu-item">
+          <mat-icon aria-hidden="false" style="margin-top: 8px;" fontIcon="send"></mat-icon>
+          <span class="link-text">Envío a Sunat</span>
+        </div>
+      </a>
+
+      <a mat-list-item [routerLink]="['/main/grr/search']" routerLinkActive="active-link">
+        <div class="menu-item">
+          <mat-icon aria-hidden="false" style="margin-top: 8px;" fontIcon="search"></mat-icon>
+          <span class="link-text">Busqueda de GRT</span>
+        </div>
+      </a>
+
+
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      @if (isHandset$ | async) {
+      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      }
+      <span>Encarga.pe</span>
+      <span class="spacer"></span>
+      <button mat-icon-button  [matMenuTriggerFor]="menu">
+        <mat-icon>account_circle</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>Perfil</button>
+        <button mat-menu-item (click)="cerrarSesion()">Cerrar Sesión</button>
+      </mat-menu>
+    </mat-toolbar>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,0 +1,176 @@
+<h2 mat-dialog-title>Solicitud de Generación de Guia Remisión Transportista</h2>
+<mat-dialog-content>
+  @if (loader) {
+  <mat-spinner
+  color="accent"
+  mode="indeterminate">
+</mat-spinner>
+  }@else {
+  <section fxLayout="row wrap" fxFlex="100">
+    <mat-card fxflex="35" fxFlex.gt-sm="30" fxFlex.lt-md="100" fxFlex.lt-md="row wrap">
+
+      <mat-card>
+        <mat-toolbar class="toolbar-card">Datos
+          Generales</mat-toolbar>
+        <mat-divider></mat-divider>
+
+        <mat-card-content fxLayout="flex row" class="container">
+
+          <mat-form-field class="media-control-form" fxFlex="100" appearance="outline">
+            <mat-label>Destino</mat-label>
+            <input matInput placeholder="Destino" [value]="programacionDto.destinod">
+          </mat-form-field>
+          <mat-form-field class="media-control-form" fxFlex="100" appearance="outline">
+            <mat-label>Agencia Origen</mat-label>
+            <input matInput placeholder="Agencia Origen" [value]="programacionDto.agenciaOrigen">
+          </mat-form-field>
+          <mat-form-field class="media-control-form" fxFlex="100" appearance="outline">
+            <mat-label>Dirección Agencia</mat-label>
+            <input matInput placeholder="Agencia Origen" [value]="programacionDto.direccionAgenciaOrigen">
+          </mat-form-field>
+
+          <mat-form-field class="media-control-form" fxFlex="100" appearance="outline">
+            <mat-label>Fecha emisión</mat-label>
+            <input matInput placeholder="Conductor" [value]="fechaActual|date:'dd-MM-yyyy'">
+          </mat-form-field>
+        </mat-card-content>
+
+      </mat-card>
+
+
+      <mat-card>
+        <mat-toolbar class="toolbar-card">Datos
+          del Vehículo</mat-toolbar>
+        <mat-divider></mat-divider>
+
+        <mat-card-content fxLayout="flex row" class="container">
+
+          <mat-form-field class="media-control-form" fxFlex="100" appearance="outline">
+            <mat-label>Marca</mat-label>
+            <input matInput placeholder="Marca" [value]="programacionDto.marcaBus">
+          </mat-form-field>
+          <mat-form-field class="media-control-form" fxFlex="100" appearance="outline">
+            <mat-label>Placa</mat-label>
+            <input matInput placeholder="Placa" [value]="programacionDto.placaBus">
+          </mat-form-field>
+
+          <mat-form-field class="media-control-form" fxFlex="100" appearance="outline">
+            <mat-label>Nro Bus</mat-label>
+            <input matInput placeholder="Nro Bus" [value]="programacionDto.nroBus">
+          </mat-form-field>
+        </mat-card-content>
+
+      </mat-card>
+
+      <!--mat-card>
+  
+                  <mat-toolbar class="toolbar-card">Origen/Destino</mat-toolbar>
+                  <mat-divider></mat-divider>
+  
+                  <mat-card-content fxLayout="flex row" class="container">
+  
+  
+                  </mat-card-content>
+  
+              </mat-card-->
+
+      <mat-card>
+        <mat-toolbar class="toolbar-card">Conductores</mat-toolbar>
+        <mat-divider></mat-divider>
+
+        <ng-container *ngFor="let item of programacionDto.conductores">
+          <mat-card-content fxLayout="flex row" class="container">
+            <mat-form-field class="media-control-form" fxFlex="100" appearance="outline">
+              <mat-label>Conductor</mat-label>
+              <input matInput placeholder="Conductor" [value]="item.nombreConductor">
+            </mat-form-field>
+
+            <mat-form-field class="media-control-form" fxFlex="100" appearance="outline">
+              <mat-label>Licencia de Conducir</mat-label>
+              <input matInput placeholder="Licencia de Conducir" [value]="item.licenciaConductor">
+            </mat-form-field>
+            <mat-divider></mat-divider>
+          </mat-card-content>
+        </ng-container>
+
+      </mat-card>
+
+    </mat-card>
+
+
+    <mat-card fxflex="65" fxFlex.gt-sm="70" fxFlex.lt-md="100" fxFlex.lt-md="row wrap">
+      <mat-toolbar class="toolbar-card">Encomiendas Enlazadas</mat-toolbar>
+      <mat-divider></mat-divider>
+      <mat-card-content>
+
+        <table mat-table [dataSource]="dataSource">
+
+          <!--- Note that these columns can be defined in any order.
+              The actual rendered columns are set as a property on the row definition" -->
+
+          <!-- Position Column -->
+          <ng-container matColumnDef="nro">
+            <th mat-header-cell *matHeaderCellDef> Nro. </th>
+            <td mat-cell *matCellDef="let element"> {{element.nro}} </td>
+          </ng-container>
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="serienumero">
+            <th mat-header-cell *matHeaderCellDef> Serie-Numero </th>
+            <td mat-cell *matCellDef="let element"> {{element.serienumero}} </td>
+          </ng-container>
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="destinod">
+            <th mat-header-cell *matHeaderCellDef> Agencia Destino </th>
+            <td mat-cell *matCellDef="let element"> {{element.destinod}} </td>
+          </ng-container>
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="remitente">
+            <th mat-header-cell *matHeaderCellDef> Remitente </th>
+            <td mat-cell *matCellDef="let element"> {{element.remitente}} </td>
+          </ng-container>
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="consignado">
+            <th mat-header-cell *matHeaderCellDef> Consignado </th>
+            <td mat-cell *matCellDef="let element"> {{element.consignado}} </td>
+          </ng-container>
+
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="nrobultos">
+            <th mat-header-cell *matHeaderCellDef> Nro Bultos </th>
+            <td mat-cell *matCellDef="let element"> {{element.nrobultos}} </td>
+          </ng-container>
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="pesototal">
+            <th mat-header-cell *matHeaderCellDef> Peso Total </th>
+            <td mat-cell *matCellDef="let element"> {{element.pesototal}} </td>
+          </ng-container>
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="costototal">
+            <th mat-header-cell *matHeaderCellDef> Costo Total </th>
+            <td mat-cell *matCellDef="let element"> {{element.costototal}} </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+        <mat-paginator [length]="totalItems" [pageSizeOptions]="[5,10,20]" [pageIndex]="pageIndex" [pageSize]="pageSize"
+          showFirstLastButtons="true" (page)="onPageChange($event)">
+        </mat-paginator>
+
+      </mat-card-content>
+    </mat-card>
+  </section>
+  }
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cerrar</button>
+  <button mat-raised-button color="accent" (click)="mostrarDialogo()">Generar GRTs</button>
+</mat-dialog-actions>
